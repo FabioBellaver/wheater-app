@@ -24,7 +24,6 @@ export default function Card({ data }) {
       </div>
 
       <div className="flex justify-center flex-col items-center">
-        {/* <span className="block">icone</span> */}
         <img src={current.condition.icon} alt="wheater icon" />
         <span className="text-slate-700 font-medium">{current.condition.text}</span>
       </div>

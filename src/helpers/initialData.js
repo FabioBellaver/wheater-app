@@ -8,7 +8,7 @@ const initialData = {
     temp_c: null,
     condition: {
       text: '',
-      icon: ' ',
+      icon: 'http://cdn.weatherapi.com/weather/64x64/day/113.png',
     },
   },
 };

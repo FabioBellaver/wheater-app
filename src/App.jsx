@@ -11,18 +11,23 @@ function App() {
     event.preventDefault();
     fetchData(city).then((response) => {
       setData(response);
-      console.log(response);
     });
   };
+
+  let emptyCity;
+
+  if (city === '') {
+    emptyCity = true;
+  }
 
   return (
     <main className="flex flex-col w-full h-screen items-center sm:justify-center p-4">
       <form onSubmit={handleSubmit} className="fixed bottom-0 w-full flex p-4 sm:relative justify-center">
         <input
           type="text"
-          placeholder="Cidade"
+          placeholder="City"
           className="p-3 rounded-lg outline-none w-full flex-1 sm:max-w-[300px]"
-          value={city.toLowerCase()}
+          value={city}
           onChange={({ target: { value } }) => setCity(value)}
         />
         <button
@@ -32,7 +37,9 @@ function App() {
           Search
         </button>
       </form>
-      <Card data={data} />
+      {emptyCity ? <p className="block text-md font-medium text-slate-700">Please, type a city.</p> : ''}
+      {!city ? '' : <Card data={data} />}
+      {/* <Card data={data} /> */}
     </main>
   );
 }
