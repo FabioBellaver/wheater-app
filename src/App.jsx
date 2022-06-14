@@ -5,12 +5,14 @@ import initialData from './helpers/initialData';
 import DefaultCard from './components/DefaultCard';
 import NotFoundCard from './components/NotFoundCard';
 import Icons from './components/Icons';
+import IsLoading from './components/IsLoading';
 
 function App() {
   const [city, setCity] = useState('');
   const [data, setData] = useState(initialData);
   const [cityNotFound, setCityNotFound] = useState(false);
   const [sent, setSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,8 +22,10 @@ function App() {
         setCityNotFound(false);
         setSent(true);
         setCity('');
+        setIsLoading(true);
       })
       .catch(() => {
+        setIsLoading(false);
         setCityNotFound(true);
         setSent(false);
       });
@@ -47,7 +51,10 @@ function App() {
           Search
         </button>
       </form>
-      {sent ? <Card data={data} /> : cityNotFound ? <NotFoundCard /> : <DefaultCard />}
+      {!sent && !cityNotFound ? <DefaultCard /> : null}
+      {isLoading && !cityNotFound && !sent ? <IsLoading /> : null}
+      {sent && !cityNotFound ? <Card data={data} /> : null}
+      {!sent && cityNotFound ? <NotFoundCard /> : null}
       <Icons />
     </main>
   );

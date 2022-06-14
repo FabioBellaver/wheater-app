@@ -6,7 +6,7 @@ import {
 export default function Icons() {
   return (
     <>
-      <div className="flex mt-[16px] text-3xl gap-8 text-slate-700">
+      <section className="flex mt-[16px] text-3xl gap-8 text-slate-700">
         <a
           href="https://github.com/FabioBellaver"
           aria-label="GitHub"
@@ -47,7 +47,7 @@ export default function Icons() {
             <FaLinkedin />
           </div>
         </a>
-      </div>
+      </section>
       <p className="text-sm font-normal text-slate-400 mt-[16px]">developed by Fábio Bellaver</p>
     </>
   );
