@@ -4,11 +4,13 @@ import Card from './components/Card';
 import initialData from './helpers/initialData';
 import DefaultCard from './components/DefaultCard';
 import NotFoundCard from './components/NotFoundCard';
+import Icons from './components/Icons';
 
 function App() {
   const [city, setCity] = useState('');
   const [data, setData] = useState(initialData);
   const [cityNotFound, setCityNotFound] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,9 +18,12 @@ function App() {
       .then((response) => {
         setData(response);
         setCityNotFound(false);
+        setSent(true);
+        setCity('');
       })
       .catch(() => {
         setCityNotFound(true);
+        setSent(false);
       });
   };
 
@@ -37,13 +42,13 @@ function App() {
         />
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 hover:duration-150 p-3 mt-[16px] rounded-lg text-white font-medium"
+          className="w-full bg-blue-600 hover:bg-blue-700 duration-300 ease-in-out p-3 mt-[16px] rounded-lg text-white font-medium"
         >
           Search
         </button>
       </form>
-      {!city ? <DefaultCard /> : cityNotFound && <NotFoundCard />}
-      {city && !cityNotFound && <Card data={data} />}
+      {sent ? <Card data={data} /> : cityNotFound ? <NotFoundCard /> : <DefaultCard />}
+      <Icons />
     </main>
   );
 }
