@@ -9,7 +9,7 @@ export default function Card({ data }) {
 
   return (
 
-    <div className="bg-white p-7 mt-7 rounded-lg shadow-md min-w-[220px] min-h-[320px]">
+    <div className="flex flex-col justify-center items-center bg-white p-7 rounded-lg shadow-md w-[288px] h-[350px]">
 
       <div className="text-center">
         <span className="block text-xl font-medium text-slate-700">{location.name}</span>
@@ -25,7 +25,7 @@ export default function Card({ data }) {
 
       <div className="flex justify-center flex-col items-center">
         <img src={current.condition.icon} alt="wheater icon" />
-        <span className="text-slate-700 font-medium">{current.condition.text}</span>
+        <span className="text-slate-700 text-center font-medium">{current.condition.text}</span>
       </div>
 
     </div>
